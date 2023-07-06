@@ -1,0 +1,62 @@
+<launch>
+  <include file="$(find freenect_launch)/launch/freenect.launch">
+    <arg name="depth_registration" value="true" />
+  </include>
+
+    <!-- Kinect cloud to laser scan -->
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+      <remap from="image"       to="/camera/depth_registered/image_raw"/>
+      <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
+      <remap from="scan"        to="/scan"/>
+      <param name="range_max" type="double" value="4"/>
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_sync/rgbd_sync" output="screen">
+      <remap from="rgb/image"        to="/camera/rgb/image_rect_color"/>
+      <remap from="depth/image"      to="/camera/depth_registered/image_raw"/>
+      <remap from="rgb/camera_info"  to="/camera/rgb/camera_info"/>
+      <remap from="rgbd_image"       to="rgbd_image"/> <!-- output -->
+      
+      <!-- Should be true for not synchronized camera topics 
+           (e.g., false for kinectv2, zed, realsense, true for xtion, kinect360)-->
+      <param name="approx_sync"       value="true"/> 
+    </node>
+
+    <!-- Odometry -->
+    <node pkg="rtabmap_odom" type="rgbd_odometry" name="rgbd_odometry" output="screen">
+      <param name="subscribe_rgbd" type="bool"   value="true"/>
+      <param name="frame_id"       type="string" value="base_link"/>
+      <remap from="rgbd_image" to="rgbd_image"/>
+    </node>
+
+  <!-- Arguments -->
+  <arg name="map_file" default="$(find autonomus_mobile_robot)/maps/map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- WaitressBot -->
+  <include file="$(find autonomus_mobile_robot)/launch/check_urdf.launch">
+  </include>
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find autonomus_mobile_robot)/launch/amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find autonomus_mobile_robot)/launch/move_base.launch">
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  </include>
+
+  <!-- rviz -->
+  <!-- <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find autonomus_mobile_robot)/rviz/rviz_config_urdf_test.rviz"/>
+  </group> -->
+  <node pkg="tf" type="static_transform_publisher" name="image_to_scan_broadcaster" args="0 0 0 0 0 0 \/camera_depth_frame camera 100" />
+
+  <arg name="pi/2" value="1.5707963267948966" />
+  <arg name="pi" value="3.14" />
+  <node pkg="tf" type="static_transform_publisher" name="camera_optical" args="-0 0 0.83 0 0 0) /base_link /camera_link 100" />
+</launch>

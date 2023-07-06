@@ -4,8 +4,10 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /Global Options1
         - /TF1/Frames1
         - /TF1/Tree1
+        - /LaserScan1
         - /Map1
         - /Global Map1/Costmap1
         - /Global Map1/Planner1
@@ -32,7 +34,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: PointCloud2
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -139,7 +141,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.030000001192092896
       Style: Flat Squares
-      Topic: /scan
+      Topic: /kinect_scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -162,7 +164,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Map
-      Topic: /map
+      Topic: /rtabmap/grid_map
       Unreliable: false
       Use Timestamp: false
       Value: true
@@ -340,7 +342,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: map
+    Fixed Frame: base_footprint
     Frame Rate: 30
   Name: root
   Tools:
@@ -376,9 +378,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7347966432571411
+      Pitch: 0.5897969603538513
       Target Frame: <Fixed Frame>
-      Yaw: 3.018178701400757
+      Yaw: 4.408179759979248
     Saved: ~
 Window Geometry:
   Displays:
