@@ -1,4 +1,4 @@
-## README: Mobile Robot SLAM System with Kinect Camera
+## README: Y-BOT : Mobile Robot SLAM with Kinect Camera
 
 ### Overview
 
@@ -54,25 +54,22 @@ The SLAM system architecture is designed to facilitate efficient mapping and nav
 
 Below is the schematic diagram of the electronic connections for the mobile robot. This includes the connections between the Arduino, motors, and other electronic components.
 
-```markdown
 ![Schematics](/Design/schematic.png)
-```
+
 
 #### System Block Diagram
 
 The block diagram provides a high-level overview of the system's functional components and their interactions.
 
-```markdown
 ![System Block Diagram](/Design/block_diagram.png)
-```
+
 
 #### Robot Design
 
 The design of the mobile robot is illustrated in the following diagram, showcasing the placement of sensors, the Kinect camera, and the wheel configuration.
 
-```markdown
 ![Robot Design](/Design/iso2.png)
-```
+
 
 ### Our Team
 
