@@ -28,6 +28,8 @@ Welcome to the Mobile Robot SLAM System repository! This project focuses on impl
 Before running the SLAM system, ensure that you have the following prerequisites installed:
 
 - ROS Noetic: Follow the [ROS Installation Guide](http://wiki.ros.org/noetic/Installation) for instructions on installing ROS Noetic.
+- Installing Kinect Driver [Freenect Installation Guide](https://aibegins.net/2020/11/22/give-your-next-robot-3d-vision-kinect-v1-with-ros-noetic/) To use the Kinect camera with ROS, you need to install the Freenect driver. Follow the instructions in this tutorial to install the driver.
+- Installing RTAB-Map RTAB-Map is a crucial component for SLAM applications. Follow the steps in this link to install RTAB-Map for ROS [RTABmap Installation Guide](https://github.com/introlab/rtabmap_ros).
 
 ### ROS (Robot Operating System)
 
