@@ -84,6 +84,11 @@ Meet the talented individuals who contributed to this project:
 
 We appreciate the efforts of all contributors who helped make this project possible.
 
+special thanks for our supervisor :
+1. Muh Anshar, ST. M.Sc(Research), Ph. D
+2. Prof. Dr. Ir. Andani, M.T.
+3. Dr. A. Ejah Umraeni Salam, S.T, M.T.
+
 ### Running the Program
 
 1. **Open Terminal:**
