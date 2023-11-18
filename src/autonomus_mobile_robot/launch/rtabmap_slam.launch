@@ -9,7 +9,7 @@
       <remap from="image"       to="/camera/depth_registered/image_raw"/>
       <remap from="camera_info" to="/camera/depth_registered/camera_info"/>
       <remap from="scan"        to="/kinect_scan"/>
-      <param name="range_max" type="double" value="4"/>
+      <param name="range_max" type="double" value="3"/>
     </node>
 
   <!-- SLAM -->
@@ -48,7 +48,7 @@
           <!-- RTAB-Map's parameters -->
           <param name="RGBD/AngularUpdate"        type="string" value="0.01"/>
           <param name="RGBD/LinearUpdate"         type="string" value="0.01"/>
-          <param name="RGBD/OptimizeFromGraphEnd" type="string" value="false"/>
+          <param name="RGBD/OptimizeFromGraphEnd" type="string" value="true"/>
     </node>
   </group>
 
@@ -63,9 +63,6 @@
 
 
 
-  <node pkg="tf" type="static_transform_publisher" name="image_to_scan_broadcaster" args="0 0 0 0 0 0 \/camera_depth_frame camera 100" />
-
-  <arg name="pi/2" value="1.5707963267948966" />
-  <arg name="pi" value="3.14" />
-  <node pkg="tf" type="static_transform_publisher" name="camera_optical" args="-0 0 0.83 0 0 0) /base_link /camera_link 100" />
+  <node pkg="tf" type="static_transform_publisher" name="image_to_scan_broadcaster" args="0 0 0 0 0 0 /camera_depth_frame camera 100" />
+  <node pkg="tf" type="static_transform_publisher" name="camera_optical" args="-0 0 0.83 0 0 0 /base_link /camera_link 100" />
 </launch>
