@@ -21,9 +21,9 @@ const double PI = 3.141592;
  
 // Robot physical constants
 const double TICKS_PER_REVOLUTION = 36; // For reference purposes.
-const double WHEEL_RADIUS = 0.15; // Wheel radius in meters
-const double WHEEL_BASE = 0.46; // Center of left tire to center of right tire
-const double TICKS_PER_METER = 76.433121; // Original was 2800
+const double WHEEL_RADIUS = 0.075; // Wheel radius in meters
+const double WHEEL_BASE = 0.45; // Center of left tire to center of right tire
+const double TICKS_PER_METER = 76; // Original was 2800
  
 // Distance both wheels have traveled
 double distanceLeft = 0;

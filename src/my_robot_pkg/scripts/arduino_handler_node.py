@@ -17,8 +17,8 @@ def callback(data):
     ang_vel = data.angular.z
 
     # Menghitung nilai PWM untuk motor kanan dan kiri
-    pwm_left = int(lin_vel*(1000))  # Dikalikan 100 agar rentangnya menjadi 0-255
-    pwm_right = int(lin_vel*(1000))  # Dikalikan 100 agar rentangnya menjadi 0-255
+    pwm_left = int(lin_vel*(500))  # Dikalikan 100 agar rentangnya menjadi 0-255
+    pwm_right = int(lin_vel*(500))  # Dikalikan 100 agar rentangnya menjadi 0-255
 
     # Menghitung arah motor kanan dan kiri
 
@@ -33,13 +33,13 @@ def callback(data):
     elif ang_vel > 0:
         direction_left = 1  # Mundur
         direction_right = 0  # Maju
-        pwm_left = int(-ang_vel*(1000))
-        pwm_right = int(ang_vel*(1000))
+        pwm_left = int(-ang_vel*(500))
+        pwm_right = int(ang_vel*(500))
     else:
         direction_left = 0  # Maju
         direction_right = 1  # Mundur
-        pwm_left = int(-ang_vel*(1000))
-        pwm_right = int(ang_vel*(1000))
+        pwm_left = int(-ang_vel*(500))
+        pwm_right = int(ang_vel*(500))
 
     # Mengirimkan nilai PWM dan arah ke Arduino melalui Serial
     ser.write(str(pwm_left).encode() + b',' + str(direction_left).encode() + b',' + str(pwm_right).encode() + b',' + str(direction_right).encode() + b'\n')
